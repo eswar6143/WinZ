@@ -13,17 +13,26 @@ function updateButton() {
       console.log("Playing now!");
     };
   } else {
-    button.innerHTML = "Login/Sign Up";
+    button.innerHTML =
+      '<span class="fa fa-user" aria-hidden="true">Login/Sign Up</span>';
     button.onclick = () => {
-      // Redirect to login/sign up page or trigger login function
-      handleLogin();
+      document.getElementById("loginModal").style.display = "block";
     };
   }
 }
+window.onclick = function (event) {
+  if (event.target == document.getElementById("loginModal")) {
+    document.getElementById("loginModal").style.display = "none";
+  }
+};
+document.getElementById("loginForm").onsubmit = function (event) {
+  event.preventDefault(); // Prevent the form from submitting the traditional way
+  handleLogin();
+};
 
 function handleLogin() {
-  const username = "your-username"; // Replace with your input
-  const password = "your-password"; // Replace with your input
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
   fetch("https://api.cue88.com/account/v2/login", {
     method: "POST",
@@ -87,3 +96,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+document.getElementById("actionButton").onclick = function () {
+  document.getElementById("loginModal").style.display = "block";
+};
+
+document.querySelector(".close").onclick = function () {
+  document.getElementById("loginModal").style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == document.getElementById("loginModal")) {
+    document.getElementById("loginModal").style.display = "none";
+  }
+};

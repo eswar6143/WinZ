@@ -83,10 +83,26 @@
                 class="btn btn-style btn-primary"
                 id="actionButton"
               >
-                <span class="fa fa-search" aria-hidden="true">
+                <span class="fa fa-users" aria-hidden="true">
                   Login/Sign Up
                 </span>
               </button>
+            <!-- Modal Structure -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Login/Sign Up</h2>
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      
+      <button type="submit" class="btn btn-submit">Submit</button>
+    </form>
+    <p id="errorMessage" style="color:red; display:none;">Login failed. Please try again.</p>
+  </div>  
             </div>
           </div>
         </nav>
