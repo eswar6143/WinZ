@@ -57,38 +57,40 @@
               </li>
             </ul>
 
-            <!--/search-right-->
-            <div class="search-right">
-              <a href="#search" title="search"
-                ><span class="fa fa-search" aria-hidden="true"></span
-              ></a>
-              <!-- search popup -->
-              <div id="search" class="pop-overlay">
-                <div class="popup">
-                  <form action="error.html" method="GET" class="search-box">
-                    <input
-                      type="search"
-                      placeholder="Enter Keyword"
-                      name="search"
-                      required="required"
-                      autofocus=""
-                    />
-                    <button type="submit" class="btn">
-                      <span class="fa fa-search" aria-hidden="true"></span>
-                    </button>
-                  </form>
-                </div>
-                <a class="close" href="#close">×</a>
-              </div>
-              <!-- /search popup -->
-            </div>
-            <!--//search-right-->
             <div class="top-quote mr-lg-3 mt-lg-0">
-              <a href="#buytheme" class="btn btn-style btn-primary">
-                <span class="fa fa-trophy" aria-hidden="true"></span>
+              <button
+                type="submit"
+                class="btn btn-style btn-primary"
+                id="actionButton"
+              >
+                <span class="fa fa-user" aria-hidden="true">
+                  Login/Sign Up
+                </span>
+              </button>
+              <!-- Modal Structure -->
+              <div id="loginModal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Login/Sign Up</h2>
+                  <form id="loginForm">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required />
 
-                Play Now
-              </a>
+                    <label for="password">Password:</label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      required
+                    />
+
+                    <button type="submit" class="btn btn-submit">Submit</button>
+                  </form>
+                  <p id="errorMessage" style="color: red; display: none">
+                    Login failed. Please try again.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           <!-- toggle switch for light and dark theme -->

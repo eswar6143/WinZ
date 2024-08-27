@@ -4414,7 +4414,7 @@ a.close.disabled {
   background-color: #000;
   border-radius: 0.25rem; }
 
-.popover {
+.popover{
   position: absolute;
   top: 0;
   left: 0;
@@ -4535,6 +4535,207 @@ a.close.disabled {
 .popover-body {
   padding: 0.5rem 0.75rem;
   color: #212529; }
+ 
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* Adds a blur effect to the background */
+  }
+  
+  .modal-content {
+    background-color: #ffffff;
+    margin: 12% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px; /* Ensures better responsiveness */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease-out; /* Adds a subtle slide-down animation */
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .close svg {
+    width: 100%;
+    height: 100%;
+    fill: #888; /* Default color for the icon */
+    transition: fill 0.3s ease;
+  }
+  
+  .close:hover svg {
+    fill: #d39e00; /* Changes color when hovering */
+  }
+  
+  .close:hover {
+    transform: scale(1.1); /* Slightly increases size when hovering */
+  }
+  
+  /* Optional: If you want the close icon more prominent by default */
+  .close {
+    transform: scale(1.2);
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0 15px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .password-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  .password-wrapper input[type="password"],
+  .password-wrapper input[type="text"] {
+    width: 100%;
+    padding-right: 40px; /* Space for the eye icon */
+  }
+  
+  .eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .eye-icon svg {
+    width: 24px;
+    height: 24px;
+    transition: fill 0.3s ease;
+  }
+  
+  .eye-icon:hover svg {
+    fill: #007bff; /* Change color when hovering */
+  }
+  
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #d39e00;
+    box-shadow: 0 0 5px rgba(222, 170, 12, 0.5);
+    outline: none;
+  }
+  
+  .button-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .btn-submit {
+    background-color: #ffc107;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn-submit:disabled {
+    background-color: #e0a800; /* A darker shade of #ffc107 */
+    cursor: not-allowed;
+  }
+  
+  .btn-submit:hover:not(:disabled) {
+    background-color: #d39e00; /* A slightly darker shade for the hover effect */
+    transform: translateY(-2px);
+  }
+  
+  .spinner {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #ffc107; /* Spinner color updated */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  
+  /* Modal Styles */
+.iframe-modal {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: none;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.iframe-modal-content {
+  background-color: #fefefe;
+  margin: 2%;
+  padding: 1%;
+  
+  border: 1px solid #888;
+  width: 95%;
+  height: 95%;
+  /* max-width: 900px; */
+  border-radius: 10px;
+  position: relative;
+}
+
+.iframe-close {
+  color: #aaa;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.iframe-close:hover,
+.iframe-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 
 .carousel {
   position: relative; }
@@ -5545,7 +5746,7 @@ button.bg-dark:focus {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1030; }
+  z-index: 5; }
 
 .fixed-bottom {
   position: fixed;
@@ -10083,9 +10284,12 @@ nav ul li a:hover {
   color: var(--heading-color); }
 
 .navbar form.search-box {
-  display: flex; }
+  display: flex;
+flex-direction: column;
+margin: 1px;
+padding: 1px }
 
-.navbar .search-right .popup form input[type="search"] {
+.navbar .search-right .popup form input[type="text"] {
   font-style: normal;
   font-weight: normal;
   font-size: 18px;

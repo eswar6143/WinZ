@@ -37,6 +37,8 @@
         border-radius: 50%;
       }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
   </head>
   <body>
     <!--header-->
@@ -77,42 +79,79 @@
               </li>
             </ul>
 
-            <!--/search-right-->
-            <div class="search-right">
-              <a href="#search" title="search"
-                ><span class="fa fa-search" aria-hidden="true"></span
-              ></a>
-              <!-- search popup -->
-              <div id="search" class="pop-overlay">
-                <div class="popup">
-                  <form action="error.html" method="GET" class="search-box">
-                    <input
-                      type="search"
-                      placeholder="Enter Keyword"
-                      name="search"
-                      required="required"
-                      autofocus=""
-                    />
-                    <button type="submit" class="btn">
-                      <span class="fa fa-search" aria-hidden="true"></span>
-                    </button>
-                  </form>
-                </div>
-                <a class="close" href="#close">×</a>
-              </div>
-            </div>
             <div class="top-quote mr-lg-3 mt-lg-0">
-              <a href="#buytheme" class="btn btn-style btn-primary">
-                <span class="fa fa-trophy" aria-hidden="true"></span>
-
-                Play Now</a
+              <button
+                type="submit"
+                class="btn btn-style btn-primary"
+                id="actionButton"
               >
+                <span class="fa fa-users" aria-hidden="true">
+                  Login/Sign Up
+                </span>
+              </button>
+              
+            <!-- Modal Structure -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <!-- <span class="close">&times;</span> -->
+    <span class="close">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.42z"/>
+      </svg>
+    </span>
+    
+    <h2 class="">Login/Sign Up</h2>
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      
+      <!-- <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required> -->
+      <label for="password">Password:</label>
+<div class="password-wrapper">
+  <input type="password" id="password" name="password" required>
+  <span id="togglePassword" class="eye-icon">
+    <!-- SVG icon for the eye -->
+    <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 5C7.99994 5 4.53005 7.22996 3 11C4.53005 14.77 7.99994 17 12 17C16 17 19.47 14.77 21 11C19.47 7.22996 16 5 12 5ZM12 15C9.80005 15 8.00005 13.2 8.00005 11C8.00005 8.79999 9.80005 6.99999 12 6.99999C14.2 6.99999 16 8.79999 16 11C16 13.2 14.2 15 12 15ZM12 9C10.8999 9 9.99994 9.89996 9.99994 11C9.99994 12.1 10.8999 13 12 13C13.1 13 14 12.1 14 11C14 9.89996 13.1 9 12 9Z" fill="#888"/>
+    </svg>
+    <!-- SVG icon for the closed eye (hidden initially) -->
+    <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <path d="M12 5C7.99994 5 4.53005 7.22996 3 11C4.53005 14.77 7.99994 17 12 17C16 17 19.47 14.77 21 11C19.47 7.22996 16 5 12 5ZM12 15C9.80005 15 8.00005 13.2 8.00005 11C8.00005 8.79999 9.80005 6.99999 12 6.99999C14.2 6.99999 16 8.79999 16 11C16 13.2 14.2 15 12 15ZM12 9C10.8999 9 9.99994 9.89996 9.99994 11C9.99994 12.1 10.8999 13 12 13C13.1 13 14 12.1 14 11C14 9.89996 13.1 9 12 9Z" fill="#888"/>
+      <path d="M2 2L22 22M2 2L22 22" stroke="#888" stroke-width="2"/>
+    </svg>
+  </span>
+</div>
+
+<div class="button-container">
+  <button type="submit" class="btn btn-submit" id="loginButton">Submit</button>
+  <div id="spinner" class="spinner" style="display: none;"></div>
+</div>
+    </form>
+    <p id="errorMessage" style="color:red; display:none;">Login failed. Please try again.</p>
+  </div>  
             </div>
+            <button class="btn btn-style btn-primary btn-logout" id="logoutButton" style="display: none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v1" />
+              </svg>
+              Logout
+            </button>
           </div>
         </nav>
       </div>
     </header>
     <!--/header-->
+    <!--gameIFRAME-->
+
+    <div id="gameModal" class="iframe-modal">
+      <div class="iframe-modal-content">
+        <span class="iframe-close" id="closeIframeModal">&times;</span>
+        <iframe id="gameIframe" src="" width="90%" height="90%" style="border: none;"></iframe>
+      </div>
+    </div>
+    <!--/gameIFRAME-->
+
     <!-- main-slider -->
     <section class="w3l-main-slider" id="home">
       <div class="companies20-content">
@@ -1196,6 +1235,7 @@
 
     <!-- Template JavaScript -->
     <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/game-launch.js"></script>
 
     <script src="assets/js/theme-change.js"></script>
 
