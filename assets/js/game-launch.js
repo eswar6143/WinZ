@@ -17,7 +17,7 @@ function updateButton() {
     logoutButton.style.display = "inline-block";
   } else {
     button.innerHTML =
-      '<span class="fa fa-user" aria-hidden="true">Login/Sign Up</span>';
+      '<span class="fa fa-user" aria-hidden="true">Login</span>';
     button.onclick = () => {
       document.getElementById("loginModal").style.display = "block";
     };
@@ -206,3 +206,81 @@ function logout() {
 
 // Add the click event listener to the "Logout" button
 document.getElementById("logoutButton").addEventListener("click", logout);
+
+document.getElementById("actionButton").onclick = function () {
+  document.getElementById("loginModal").style.display = "block";
+};
+
+// JavaScript to handle form switching and submission logic
+
+// Elements
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+const otpForm = document.getElementById("otpForm");
+const modalTitle = document.getElementById("modalTitle");
+const switchToSignUpLink = document.getElementById("switchToSignUp");
+const backToLoginLink = document.getElementById("backToLogin");
+const closeModal = document.getElementById("closeModal");
+
+// Switch to Sign Up form
+switchToSignUpLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  loginForm.style.display = "none";
+  signupForm.style.display = "block";
+  otpForm.style.display = "none";
+  modalTitle.textContent = "Sign Up";
+});
+
+// Switch back to Login form
+backToLoginLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  signupForm.style.display = "none";
+  otpForm.style.display = "none";
+  loginForm.style.display = "block";
+  modalTitle.textContent = "Login";
+});
+
+// Handle Sign Up form submission and OTP sending
+signupForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  // Simulate sending OTP
+  signupForm.style.display = "none";
+  otpForm.style.display = "block";
+  modalTitle.textContent = "Verify OTP";
+  startOtpResendTimer();
+});
+
+// Handle OTP form submission and verification
+otpForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  // Simulate OTP verification (you can add API logic here)
+  alert("OTP verified successfully!");
+  // Proceed to the next step or close the modal
+  closeModal.click(); // Simulate closing the modal after OTP verification
+});
+
+// OTP resend timer logic
+function startOtpResendTimer() {
+  let timer = 30;
+  const timerElement = document.getElementById("resendTimer");
+  const countdown = setInterval(() => {
+    timer--;
+    timerElement.textContent = timer;
+    if (timer === 0) {
+      clearInterval(countdown);
+      timerElement.textContent = "Resend OTP";
+      timerElement.style.cursor = "pointer";
+      timerElement.style.color = "#ffc107";
+      timerElement.addEventListener("click", () => {
+        console.log("Resending OTP...");
+        startOtpResendTimer(); // Restart the timer after resending OTP
+      });
+    }
+  }, 1000);
+}
+
+// Close modal logic
+closeModal.addEventListener("click", () => {
+  document.getElementById("loginModal").style.display = "none";
+});
+``;

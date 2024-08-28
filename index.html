@@ -86,51 +86,78 @@
                 id="actionButton"
               >
                 <span class="fa fa-users" aria-hidden="true">
-                  Login/Sign Up
+                  Login
                 </span>
               </button>
               
-            <!-- Modal Structure -->
+        <!-- Combined Modal for Login, Sign Up, and OTP Verification -->
 <div id="loginModal" class="modal">
   <div class="modal-content">
-    <!-- <span class="close">&times;</span> -->
-    <span class="close">
+    <span class="close" id="closeModal">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.42z"/>
       </svg>
     </span>
     
-    <h2 class="">Login/Sign Up</h2>
+    <h2 id="modalTitle">Login/Sign Up</h2>
+
+    <!-- Step 1: Login Form (Initial View) -->
     <form id="loginForm">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
-      
-      <!-- <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required> -->
+
       <label for="password">Password:</label>
-<div class="password-wrapper">
-  <input type="password" id="password" name="password" required>
-  <span id="togglePassword" class="eye-icon">
-    <!-- SVG icon for the eye -->
-    <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 5C7.99994 5 4.53005 7.22996 3 11C4.53005 14.77 7.99994 17 12 17C16 17 19.47 14.77 21 11C19.47 7.22996 16 5 12 5ZM12 15C9.80005 15 8.00005 13.2 8.00005 11C8.00005 8.79999 9.80005 6.99999 12 6.99999C14.2 6.99999 16 8.79999 16 11C16 13.2 14.2 15 12 15ZM12 9C10.8999 9 9.99994 9.89996 9.99994 11C9.99994 12.1 10.8999 13 12 13C13.1 13 14 12.1 14 11C14 9.89996 13.1 9 12 9Z" fill="#888"/>
-    </svg>
-    <!-- SVG icon for the closed eye (hidden initially) -->
-    <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-      <path d="M12 5C7.99994 5 4.53005 7.22996 3 11C4.53005 14.77 7.99994 17 12 17C16 17 19.47 14.77 21 11C19.47 7.22996 16 5 12 5ZM12 15C9.80005 15 8.00005 13.2 8.00005 11C8.00005 8.79999 9.80005 6.99999 12 6.99999C14.2 6.99999 16 8.79999 16 11C16 13.2 14.2 15 12 15ZM12 9C10.8999 9 9.99994 9.89996 9.99994 11C9.99994 12.1 10.8999 13 12 13C13.1 13 14 12.1 14 11C14 9.89996 13.1 9 12 9Z" fill="#888"/>
-      <path d="M2 2L22 22M2 2L22 22" stroke="#888" stroke-width="2"/>
-    </svg>
-  </span>
+      <div class="password-wrapper">
+        <input type="password" id="password" name="password" required>
+        <span id="togglePassword" class="eye-icon">
+          <!-- SVG icon for the eye -->
+          <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5C7.99994 5 4.53005 7.22996 3 11C4.53005 14.77 7.99994 17 12 17C16 17 19.47 14.77 21 11C19.47 7.22996 16 5 12 5ZM12 15C9.80005 15 8.00005 13.2 8.00005 11C8.00005 8.79999 9.80005 6.99999 12 6.99999C14.2 6.99999 16 8.79999 16 11C16 13.2 14.2 15 12 15ZM12 9C10.8999 9 9.99994 9.89996 9.99994 11C9.99994 12.1 10.8999 13 12 13C13.1 13 14 12.1 14 11C14 9.89996 13.1 9 12 9Z" fill="#888"/>
+          </svg>
+          <!-- SVG icon for the closed eye (hidden initially) -->
+          <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <path d="M12 5C7.99994 5 4.53005 7.22996 3 11C4.53005 14.77 7.99994 17 12 17C16 17 19.47 14.77 21 11C19.47 7.22996 16 5 12 5ZM12 15C9.80005 15 8.00005 13.2 8.00005 11C8.00005 8.79999 9.80005 6.99999 12 6.99999C14.2 6.99999 16 8.79999 16 11C16 13.2 14.2 15 12 15ZM12 9C10.8999 9 9.99994 9.89996 9.99994 11C9.99994 12.1 10.8999 13 12 13C13.1 13 14 12.1 14 11C14 9.89996 13.1 9 12 9Z" fill="#888"/>
+            <path d="M2 2L22 22M2 2L22 22" stroke="#888" stroke-width="2"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="button-container">
+        <button type="submit" class="btn btn-submit" id="loginButton">Submit</button>
+        <div id="spinner" class="spinner" style="display: none;"></div>
+      </div>
+    </form>
+
+    <!-- Step 2: Sign Up Form (Initially Hidden) -->
+    <form id="signupForm" style="display: none;">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" placeholder="+91" required>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="termsCheckbox" required>
+        <label for="termsCheckbox">I agree to the all terms & Conditions of QuickExch.</label>
+      </div>
+      <button type="submit" class="btn btn-submit" id="sendOtpButton">SEND OTP</button>
+    </form>
+
+    <!-- Step 3: OTP Verification (Initially Hidden) -->
+    <form id="otpForm" style="display: none;">
+      <p id="enteredPhoneNumber" class="phone-number-display"></p> <!-- Display entered phone number -->
+      <label for="otp">OTP *</label>
+      <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+      <p class="resend-timer">Resend in <span id="resendTimer">30</span> sec</p>
+      <button type="submit" class="btn btn-submit">VERIFY OTP</button>
+    </form>
+
+    <p id="errorMessage" style="color:red; display:none;">Login failed. Please try again.</p>
+    <p class="redirect-links">
+      Don’t have an account? <a href="#" id="switchToSignUp">Sign Up</a> | <a href="#" id="backToLogin">Back to Login</a>
+    </p>
+  </div>  
 </div>
 
-<div class="button-container">
-  <button type="submit" class="btn btn-submit" id="loginButton">Submit</button>
-  <div id="spinner" class="spinner" style="display: none;"></div>
-</div>
-    </form>
-    <p id="errorMessage" style="color:red; display:none;">Login failed. Please try again.</p>
-  </div>  
-            </div>
+
+            
             <button class="btn btn-style btn-primary btn-logout" id="logoutButton" style="display: none;">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v1" />
@@ -146,8 +173,8 @@
 
     <div id="gameModal" class="iframe-modal">
       <div class="iframe-modal-content">
-        <span class="iframe-close" id="closeIframeModal">&times;</span>
-        <iframe id="gameIframe" src="" width="90%" height="90%" style="border: none;"></iframe>
+        <div class="iframe-close" id="closeIframeModal">&times;</div>
+        <iframe id="gameIframe" src="" width="100%" height="100%" style="border: none;"></iframe>
       </div>
     </div>
     <!--/gameIFRAME-->
