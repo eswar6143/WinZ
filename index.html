@@ -90,7 +90,7 @@
                 </span>
               </button>
               
-            <!-- Modal Structure -->
+            <!-- Login-Modal Structure -->
 <div id="loginModal" class="modal">
   <div class="modal-content">
     <!-- <span class="close">&times;</span> -->
@@ -100,7 +100,7 @@
       </svg>
     </span>
     
-    <h2 class="">Login/Sign Up</h2>
+    <h2 class="">Login</h2>
     <form id="loginForm">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
@@ -138,6 +138,83 @@
               Logout
             </button>
           </div>
+          <button class="btn btn-style btn-primary" id="signupButton">
+            <span class="fa fa-user" aria-hidden="true">
+            Sign up
+          </button>
+          <!-- Sign-Up Structure -->
+          <div id="signupModal" class="signUp-modal">
+            <div class="signUp-modal-content">
+                <span class="signUp-close" id="signUp-closeModal">&times;</span>
+                <h2 class="signUp-title">Sign Up</h2>
+        
+                <!-- Form 1: Phone Number and Terms -->
+                <form id="form1-phoneNumber">
+                    <!-- Phone Number Input -->
+                    <label for="signUp-phoneNumber">Phone Number</label>
+                    <div class="signUp-phone-input">
+                        <input type="text" id="signUp-phoneNumber" name="phoneNumber" value="+91" maxlength="13" required pattern="^\+91[0-9]{10}$">
+                    </div>
+                    <div id="phoneError" style="color: red; display: none;"></div> <!-- Error message container -->
+        
+                    <!-- Terms and Conditions -->
+                    <div id="termsSection" class="checkbox-container">
+                        <input type="checkbox" id="termsCheckbox" required>
+                        <label for="termsCheckbox">I agree to all terms & Conditions of Winz.</label>
+                    </div>
+                    <div id="termsError" style="color: red; display: none;"></div>
+        
+                    <!-- Send OTP Button -->
+                    <div id="send-OTPButton">
+                        <button type="submit" class="signUp-btn-submit" id="sendOTPButton">Send OTP</button>
+                    </div>
+                </form>
+        
+                <!-- Form 2: OTP Verification -->
+                <form id="form2-verifyOTP" style="display: none;">
+                  <label for="signUp-phoneNumber">Phone Number</label>
+                    <div class="signUp-phone-input">
+                        <input type="text" id="signUp-entered-phoneNumber" name="phoneNumber" value="+91" maxlength="13" required disabled>
+                    </div>
+
+                    <label for="signUp-otp">OTP</label>
+                    <input type="text" id="signUp-otp" name="otp" placeholder="Enter OTP" required pattern="^[0-9]{6}$">
+                    <div id="otpError" style="color: red; display: none;"></div>
+                    <button type="submit" class="signUp-btn-submit" id="verifyOTPButton">Verify OTP</button>
+                </form>
+        
+                <!-- Form 3: User Details -->
+                <form id="form3-userDetails" style="display: none;">
+                    <label for="signUp-username">Username</label>
+                    <input type="text" id="signUp-username" name="username" placeholder="Enter Username" required >
+                    <div id="signUp-usernameError" style="color: red; display: none;"></div>
+                    <label for="signUp-fullname">Full Name</label>
+                    <input type="text" id="signUp-fullname" name="fullname" placeholder="Enter Full Name" required>
+                    <div id="signUp-fullnameError" style="color: red; display: none;"></div>
+                    <label for="signUp-password">Password</label>
+                    <div class="password-wrapper">
+                      <input type="password" id="signUp-password" name="password" placeholder="Enter Password" required>
+                      <span id="togglePassword" class="eye-icon">
+                        <!-- SVG icon for the eye -->
+                        <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 5C7.99994 5 4.53005 7.22996 3 11C4.53005 14.77 7.99994 17 12 17C16 17 19.47 14.77 21 11C19.47 7.22996 16 5 12 5ZM12 15C9.80005 15 8.00005 13.2 8.00005 11C8.00005 8.79999 9.80005 6.99999 12 6.99999C14.2 6.99999 16 8.79999 16 11C16 13.2 14.2 15 12 15ZM12 9C10.8999 9 9.99994 9.89996 9.99994 11C9.99994 12.1 10.8999 13 12 13C13.1 13 14 12.1 14 11C14 9.89996 13.1 9 12 9Z" fill="#888"/>
+                        </svg>
+                        <!-- SVG icon for the closed eye (hidden initially) -->
+                        <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                          <path d="M12 5C7.99994 5 4.53005 7.22996 3 11C4.53005 14.77 7.99994 17 12 17C16 17 19.47 14.77 21 11C19.47 7.22996 16 5 12 5ZM12 15C9.80005 15 8.00005 13.2 8.00005 11C8.00005 8.79999 9.80005 6.99999 12 6.99999C14.2 6.99999 16 8.79999 16 11C16 13.2 14.2 15 12 15ZM12 9C10.8999 9 9.99994 9.89996 9.99994 11C9.99994 12.1 10.8999 13 12 13C13.1 13 14 12.1 14 11C14 9.89996 13.1 9 12 9Z" fill="#888"/>
+                          <path d="M2 2L22 22M2 2L22 22" stroke="#888" stroke-width="2"/>
+                        </svg>
+                      </span>
+                    </div>
+                    <div id="signUp-passwordError" style="color: red; display: none;"></div>
+
+                    <div id="userDetailsError" style="color: red; display: none;"></div>
+                    <button type="submit" class="signUp-btn-submit" id="submitUserDetailsButton">Submit</button>
+                </form>
+                <p style="margin-top:5px;">Already have an account?<span><button class="underline-button" id="loginAccount-buuton">Login</button></span></p>
+            </div>
+        </div>
+        
         </nav>
       </div>
     </header>
