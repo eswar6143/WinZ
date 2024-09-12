@@ -852,15 +852,9 @@ h6 {
   border: solid;
   border-radius: 40px;
   color: #fff;
-  background: linear-gradient(
-    to bottom right,
-    #2c1f45,
-    #4e367a,
-    #9169c9,
-    #24a6ba87,
-    #4ab9ca87
-  );
+  background: linear-gradient(120deg, #4a90e2, #72b7d6, #f4a261, #f6d365);
 }
+
 .border h3 {
   color: #fff;
   font-size: 20px;
