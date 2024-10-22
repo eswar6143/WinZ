@@ -36,11 +36,28 @@ Author URL: http://w3layouts.com
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
+  --heading-color: #3f3a64;
+
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+
+    --primary-color: #f4ca16;
+    --secondary-color: #68d585;
+    --font-color: #666;
+    --bg-color: #fff;
+    --border-radius: 6px;
+    --border-radius-full: 35px;
+    --border-color: transparent;
+    --border-color-light: #eee;
+    --nav-color: #292922;
+    --dropdown-color: #fff;
+    --iframe-filter: grayscale(0%);
+    --bg-grey: #f7f7f7;
+    --bg-lightgrey: rgba(237, 233, 225, 0.35);
+    --layer: rgba(0, 0, 0, 0.45);
 }
 
 *,
@@ -2004,6 +2021,11 @@ pre code {
   .form-control {
     transition: none;
   }
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 .form-control::-ms-expand {
   background-color: transparent;
@@ -13046,39 +13068,8 @@ a.text-dark:focus {
   clip: auto;
 }
 
-:root {
-  --primary-color: #f4ca16;
-  --secondary-color: #68d585;
-  --font-color: #666;
-  --bg-color: #fff;
-  --heading-color: #3f3a64;
-  --border-radius: 6px;
-  --border-radius-full: 35px;
-  --border-color: transparent;
-  --border-color-light: #eee;
-  --nav-color: #292922;
-  --dropdown-color: #fff;
-  --iframe-filter: grayscale(0%);
-  --bg-grey: #f7f7f7;
-  --bg-lightgrey: rgba(237, 233, 225, 0.35);
-  --layer: rgba(0, 0, 0, 0.45);
-}
 
-[data-theme="dark"] {
-  --primary-color: #ce6d06;
-  --secondary-color: #68d585;
-  --font-color: #c2c2c2;
-  --bg-color: #362d27;
-  --heading-color: #eee;
-  --border-color: rgba(255, 255, 255, 0.2);
-  --border-color-light: rgba(255, 255, 255, 0.1);
-  --nav-color: #fff;
-  --dropdown-color: #121725;
-  --iframe-filter: grayscale(100%);
-  --bg-grey: #000;
-  --bg-lightgrey: #2a2420;
-  --layer: rgba(0, 0, 0, 0.65);
-}
+
 
 .noscroll {
   overflow: hidden;
@@ -16892,21 +16883,20 @@ div#small-dialog1 iframe {
 
 /*# sourceMappingURL=style-starter.css.map */
 .signUp-modal {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: lightgray;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
+  z-index: 1;
 }
 
 .signUp-modal-content {
-  margin: 12% auto;
+  margin: 5% auto;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -17047,4 +17037,20 @@ input[type="text"],
 .underline-button:hover {
   text-decoration: none; /* Remove underline on hover for effect */
   color: darkbrown;
+}
+.logo {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Style for the logo content */
+.logo-content {
+  text-transform: capitalize; /* Capitalizes the first letter of each word */
+  text-decoration: none; /* Removes underline from the link */
+  color: #000; /* Set color for the logo text, change as needed */
+  font-size: 48px; /* Set the font size of the logo */
+  font-weight: bold; /* Make the logo text bold */
 }
